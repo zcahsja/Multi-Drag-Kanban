@@ -251,8 +251,7 @@ const reorderMultiDrag = ({
         ? buckets[overContainerIndex].facts.length
         : over.data.current.sortable.index;
 
-    const start: Bucket = getBucket(buckets, activeContainer);
-    const dragged: string = start.facts[activeIndex].uid;
+    const draggedId = active?.id;
 
     let newIndex: number;
     if (over.id in bucketLabels) {
@@ -276,10 +275,10 @@ const reorderMultiDrag = ({
     const orderedSelectedFactIds: string[] = [...selectedFactIds];
     orderedSelectedFactIds.sort((a: string, b: string): number => {
       // moving the dragged item to the top of the list
-      if (a === dragged) {
+      if (a === draggedId) {
         return -1;
       }
-      if (b === dragged) {
+      if (b === draggedId) {
         return 1;
       }
 
